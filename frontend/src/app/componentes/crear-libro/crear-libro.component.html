@@ -1,0 +1,53 @@
+<div class="contenedor">
+    <form (ngSubmit)="crear()" [formGroup]="formulario">
+        <h2>Crear un libro</h2> 
+        <div class="contenedor">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre" [ngClass]="{'is-invalid':enviar && f.nombre.errors}">
+                <div *ngIf="enviar && f.nombre.errors">
+                    <div *ngIf="f.nombre.errors.required">
+                        Campo requerido
+                    </div>
+                </div>
+            </mat-form-field>
+        </div>
+        <div class="contenedor">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Editorial</mat-label>
+                <input matInput formControlName="editorial" [ngClass]="{'is-invalid':enviar && f.editorial.errors}">
+                <div *ngIf="enviar && f.editorial.errors">
+                    <div *ngIf="f.editorial.errors.required">
+                        Campo requerido
+                    </div>
+                </div>
+            </mat-form-field>
+        </div>
+        <div class="contenedor">
+            <label for="fecha">Fecha Publicación</label>
+            <input class="fecha" type="date" name="date" id="" formControlName="fechaDePublicacion" [ngClass]="{'is-invalid':enviar && f.fechaDePublicacion.errors}">
+            <div *ngIf="enviar && f.fechaDePublicacion.errors">
+                <div *ngIf="f.fechaDePublicacion.errors.required">
+                    Fecha requerida
+                </div>
+            </div>
+        </div>
+        <div class="contenedor">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput formControlName="descripcion" [ngClass]="{'is-invalid':enviar && f.descripcion.errors }"></textarea>
+            </mat-form-field>
+            <div *ngIf="enviar && f.descripcion.errors">
+                <div *ngIf="f.descripcion.errors.required">
+                      Descripción requerida
+                </div>
+            </div>
+        </div>
+        <div class="contenedor archivos">
+            <label for="subir">Subir imagen</label>
+            <input class="archivo" type="file" name="subir" id="" (change)="img($event)">
+            <span id="imgAlert"></span>
+        </div>
+        <input type="submit" value="Crear" class="btn">
+    </form>
+</div>

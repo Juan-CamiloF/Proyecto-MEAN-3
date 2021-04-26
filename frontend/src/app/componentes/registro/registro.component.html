@@ -1,0 +1,73 @@
+<div class="contenedor">
+    <h2>Ingrese sus datos</h2>
+    <form [formGroup]="formulario" (ngSubmit)="registrar()">
+        <div class="contenedor">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text" formControlName="nombre" [ngClass]="{'is-invalid': enviar && f.nombre.errors}">
+                <div *ngIf="f.nombre.errors && enviar">
+                    <div *ngIf="f.nombre.errors.required">
+                        Campo requerido
+                    </div>
+                </div>
+            </mat-form-field>
+        </div>
+        <div class="contenedor">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Edad</mat-label>
+                <input matInput type="number" formControlName="edad" [ngClass]="{'is-invalid':enviar && f.edad.errors}">
+                <div *ngIf="enviar && f.edad.errors">
+                    <div *ngIf="f.edad.errors.required">
+                        Campo requerido
+                    </div>
+                    <div *ngIf="f.edad.errors.pattern">
+                        No es una edad valida
+                    </div>
+                </div>
+            </mat-form-field>
+        </div>
+        <div class="contenedor">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Correo</mat-label>
+                <input matInput type="email" formControlName="correo" [ngClass]="{'is-invalid':enviar && f.correo.errors}">
+                <div *ngIf="enviar && f.correo.errors">
+                    <div *ngIf="enviar && f.correo.errors.required">
+                        Campo requerido
+                    </div>
+                    <div *ngIf="enviar && f.correo.errors.email">
+                        No es un correo valido
+                    </div>
+                </div>
+            </mat-form-field>
+        </div>
+        <div class="contenedor">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" formControlName="contrasenia" [ngClass]="{'is-invalid':enviar && f.contrasenia.errors}">
+                <div *ngIf="enviar && f.contrasenia.errors">
+                    <div *ngIf="enviar && f.contrasenia.errors.required">
+                        Campo requerido
+                    </div>
+                    <div *ngIf="enviar && f.contrasenia.errors.minLength">
+                        Muy corta
+                    </div>
+                </div>
+            </mat-form-field>
+        </div>
+        <div class="contenedor">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Repetir Contraseña</mat-label>
+                <input matInput type="password" formControlName="repetirContrasenia" [ngClass]="{'is-invalid':enviar && f.repetirContrasenia.errors}" >
+                <div *ngIf="enviar && f.repetirContrasenia.errors">
+                    <div *ngIf="enviar && f.repetirContrasenia.errors.required">
+                        Campo requerido
+                    </div>
+                    <div *ngIf="enviar && f.repetirContrasenia.errors.mustMatch">
+                        No coincide
+                    </div>
+                </div>
+            </mat-form-field>
+        </div>
+        <input type="submit" value="Registrar" class="btn">
+    </form>
+</div>

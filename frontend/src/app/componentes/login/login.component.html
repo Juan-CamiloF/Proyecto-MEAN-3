@@ -1,0 +1,33 @@
+<div class="contenedor">
+    <h2>Iniciar Sesión</h2>
+    <form (ngSubmit)="iniciar()" [formGroup]="formulario">
+        <div class="contenedor">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Correo</mat-label>
+                <input  matInput type="email" formControlName="correo"
+                    [ngClass]="{'is-invalid': enviar && f.correo.errors}">
+                <div *ngIf="enviar && f.correo.errors">
+                    <div *ngIf="f.correo.errors.required">
+                        Campo requerido
+                    </div>
+                    <div *ngIf="enviar && f.correo.errors.email">
+                        No es valido el correo
+                    </div>
+                </div>
+            </mat-form-field>
+        </div>
+        <div class="contenedor">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input  matInput type="password" formControlName="contrasenia"
+                    [ngClass]="{'is-invalid': enviar && f.contrasenia.errors}">
+                <div *ngIf="enviar && f.contrasenia.errors">
+                    <div *ngIf="f.contrasenia.errors.required">
+                        Campo requerido
+                    </div>
+                </div>
+            </mat-form-field>
+        </div>
+        <input type="submit" value="Iniciar" class="btn">
+    </form>
+</div>

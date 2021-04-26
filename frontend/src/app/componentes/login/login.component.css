@@ -1,0 +1,7 @@
+button{
+    background: none;
+    border:none;
+}
+button:focus{
+    border-radius: 50%;
+}

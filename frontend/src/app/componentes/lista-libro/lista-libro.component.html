@@ -1,0 +1,81 @@
+<div class="contenedor">
+  <h2>Lista de libro subidos</h2>
+  <div class="for" *ngFor="let libro of lista">
+    <div class="tarjeta">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header class="header">
+          <mat-panel-title>Nombre: {{libro.nombre}}</mat-panel-title>
+          <mat-panel-description>
+            Fecha de Publicación: {{libro.fechaDePublicacion|date:'dd/MM/yyyy' : 'UTC'}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <h3>Editorial: {{libro.editorial}}</h3>
+        <p>Descripción: {{libro.descripcion}}</p>
+        <div class="img">
+          <img src="{{ libro.foto }}" alt="" class="imagen" />
+          <span class="material-icons actualizar" (click)="actualizarImg(libro)" >
+            create
+          </span>
+        </div>
+        <span id="actualizarAlerta"></span>
+        <div class="iconos">
+          <button mat-button (click)="abrirFormulario(libro)" >Actualizar datos</button>
+          <span class="material-icons borrar"  (click)="[eliminarImg(libro),eliminar(libro)]">
+            delete_forever
+          </span>
+        </div>
+      </mat-expansion-panel>
+    </div>
+  </div>
+  <div class="formulario Invisible" id="formulario">
+    <form (ngSubmit)="actualizar()" [formGroup]="formulario">
+      <h2>Actualizar Libro</h2> 
+      <div class="contenedor">
+          <mat-form-field class="input" appearance="fill">
+              <mat-label>Nombre</mat-label>
+              <input matInput formControlName="nombre" [ngClass]="{'is-invalid':enviar && f.nombre.errors}">
+              <div *ngIf="enviar && f.nombre.errors">
+                  <div *ngIf="f.nombre.errors.required">
+                      Campo requerido
+                  </div>
+              </div>
+          </mat-form-field>
+      </div>
+      <div class="contenedor">
+          <mat-form-field class="input" appearance="fill">
+              <mat-label>Editorial</mat-label>
+              <input matInput formControlName="editorial" [ngClass]="{'is-invalid':enviar && f.editorial.errors}">
+              <div *ngIf="enviar && f.editorial.errors">
+                  <div *ngIf="f.editorial.errors.required">
+                      Campo requerido
+                  </div>
+              </div>
+          </mat-form-field>
+      </div>
+      <div class="contenedor">
+          <label for="fecha">Fecha Publicación</label>
+          <input class="fecha" type="date" name="date" id="" formControlName="fechaDePublicacion" [ngClass]="{'is-invalid':enviar && f.fechaDePublicacion.errors}">
+          <div *ngIf="enviar && f.fechaDePublicacion.errors">
+              <div *ngIf="f.fechaDePublicacion.errors.required">
+                  Fecha requerida
+              </div>
+          </div>
+      </div>
+      <div class="contenedor">
+          <mat-form-field class="input" appearance="fill">
+              <mat-label>Descripción</mat-label>
+              <textarea matInput formControlName="descripcion" [ngClass]="{'is-invalid':enviar && f.descripcion.errors }"></textarea>
+          </mat-form-field>
+          <div *ngIf="enviar && f.descripcion.errors">
+              <div *ngIf="f.descripcion.errors.required">
+                    Descripción requerida
+              </div>
+          </div>
+      </div>
+      <div class="inputs">
+        <input type="submit" value="Actualizar" class="btn">
+        <input type="button"(click)="cerrarFormulario()" value="Cancelar" class="btn">
+      </div>
+  </form>
+  </div>
+</div>

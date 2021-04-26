@@ -1,0 +1,23 @@
+<div class="contenedor">
+    <h2>Todos los libros subidos</h2>
+    <div class="for" *ngFor="let libro of listaLibros">
+      <div class="tarjeta">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header class="header">
+            <mat-panel-title>Nombre: {{libro.nombre}}</mat-panel-title>
+            <mat-panel-description>
+              Fecha de Publicación: {{libro.fechaDePublicacion|date:'dd/MM/yyyy' : 'UTC'}}
+            </mat-panel-description>
+            <mat-panel-description>
+              Usuario : {{libro.idUsuario.correo}} 
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <h3>Editorial: {{libro.editorial}}</h3>
+          <p>Descripción: {{libro.descripcion}}</p>
+          <div class="img">
+            <img src="{{ libro.foto }}" alt="" class="imagen" />
+          </div>
+        </mat-expansion-panel>
+      </div>
+    </div>
+  </div>

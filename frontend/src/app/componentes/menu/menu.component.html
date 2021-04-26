@@ -1,0 +1,34 @@
+<nav class="nav" *ngIf="!usuario.inicio()">
+  <ul class="elemento">
+    <a routerLink="/login">
+      <span class="material-icons"> login </span>Iniciar sesión
+    </a>
+  </ul>
+  <ul class="elemento">
+    <a routerLink="/registro">
+      <span class="material-icons">account_circle</span>Registrarse
+    </a>
+  </ul>
+</nav>
+<nav class="nav" *ngIf="usuario.inicio()">
+  <ul class="elemento">
+    <a routerLink="/crear">
+      <span class="material-icons">add_circle</span>Crear
+    </a>
+  </ul>
+  <ul class="elemento">
+    <a routerLink="/libros">
+      <span class="material-icons">view_list</span>Mis libros
+    </a>
+  </ul>
+  <ul class="elemento">
+    <a routerLink="/listar">
+      <span class="material-icons">list</span>Todos los libros
+    </a>
+  </ul>
+  <ul class="elemento">
+    <a routerLink="/login" *ngIf="usuario.inicio()" (click)="usuario.cerrar()">
+      <span class="material-icons">logout</span>Cerrar Sesión
+    </a>
+  </ul>
+</nav>
